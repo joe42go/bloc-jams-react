@@ -13,7 +13,8 @@ class Album extends Component {
         this.state = {
             album: album,
             currentSong: album.songs[0],
-            isPlaying: false
+            isPlaying: false,
+            icon: 1//how to turn this into an index figure
         };
 
         this.audioElement = document.createElement('audio');
@@ -39,9 +40,27 @@ class Album extends Component {
         const isSameSong = this.state.currentSong == song;
         if (this.state.isPlaying && isSameSong) {
             this.pause();
+            this.setState({icon:<ion-icon name="arrow-dropright-circle"></ion-icon>});
         } else {
             if (!isSameSong) { this.setSong(song);}
             this.play();
+            this.setState({icon:<ion-icon name="pause"></ion-icon>});
+        }
+    }
+
+    _onMouseEnter () {
+        if (this.state.isPlaying) {
+            this.setState({icon:<ion-icon name="pause"></ion-icon>});
+        } else {
+            this.setState({icon:<ion-icon name="arrow-dropright-circle"></ion-icon>});
+        }
+    }
+
+    _onMouseLeave (index) {
+        if (this.state.isPlaying) {
+            return null;
+        } else {
+            this.setState({icon:index+1});
         }
     }
 
@@ -64,8 +83,8 @@ class Album extends Component {
                     </colgroup>
                     <tbody>
                         {
-                            this.state.album.songs.map( (song, index) =>
-                                <tr className="song" key={index} onClick={() => this.handleSongClick(song)}>{index + 1}. {song.title} {song.duration}</tr>
+                            this.state.album.songs.map( (song, index) =>  //how to separate the impact to an individual song
+                                <tr className="song" key={index}><span className="ion-play" onClick={() => this.handleSongClick(song)} onMouseEnter={() => this._onMouseEnter()} onMouseLeave={() => this._onMouseLeave(index)}>{this.state.icon}</span>{song.title} {song.duration}</tr>
                             )
                         }
                     </tbody>
