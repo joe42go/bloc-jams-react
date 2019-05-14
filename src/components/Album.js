@@ -158,7 +158,7 @@ class Album extends Component {
                                         <span className="ion-play" onClick={() => this.handleSongClick(song, index)} onMouseEnter={() => this._onMouseEnter(index)} onMouseLeave={() => this._onMouseLeave(index)}>{this.renderIcon(song, index)}</span>
                                     </td>
                                     <td>{song.title}</td>
-                                    <td>{song.duration}</td>
+                                    <td>{this.formatTime(song.duration)}</td>
                                 </tr>
                             )
                         }
