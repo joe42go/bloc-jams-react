@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import albumData from './../data/albums';
 import PlayerBar from './PlayerBar';
+import { Card, Table } from 'react-bootstrap';
 
 class Album extends Component {
 
@@ -127,7 +128,7 @@ class Album extends Component {
         if (this.state.isPlaying && isSameSong) {
             return <ion-icon name="pause"></ion-icon>;
         } else if (!this.state.isPlaying && isSameIdx) {
-            return <ion-icon name="arrow-dropright-circle"></ion-icon>;
+            return <ion-icon name="play"></ion-icon>;
         } else {
             return index + 1;
         }
@@ -135,16 +136,27 @@ class Album extends Component {
 
     render () {
         return (
+            <Card className="bg-dark text-white">
             <section className="album">
                 <section id="album-info">
-                    <img id="album-cover-art" src={this.state.album.albumCover} alt={this.state.album.title}/>
+                    <Card.Img id="album-cover-art" src={this.state.album.albumCover} alt={this.state.album.title} style={{ width: 'auto' }} />
                     <div className="album-details">
                         <h1 id="album-title">{this.state.album.title}</h1>
                         <h2 className="artist">{this.state.album.artist}</h2>
                         <div id="release-info">{this.state.album.releaseInfo}</div>
                     </div>
                 </section>
+                <p></p>
+                <Table striped bordered hover variant="dark">
+                <center>
                 <table id="song-list">
+                    <thead>
+                        <tr>
+                            <th>Track</th>
+                            <th>Song Title</th>
+                            <th>Length</th>
+                        </tr>
+                    </thead>
                     <colgroup>
                         <col id="song-number-column" />
                         <col id="song-title-column" />
@@ -164,6 +176,9 @@ class Album extends Component {
                         }
                     </tbody>
                 </table>
+                </center>
+                </Table>
+                <Card.Footer className="text-muted, bg-secondary, border-success">
                 <PlayerBar
                     isPlaying={this.state.isPlaying}
                     currentSong={this.state.currentSong}
@@ -179,7 +194,9 @@ class Album extends Component {
                     handleVolumeChange={(e) => this.handleVolumeChange(e)}
                     formatTime={() => this.formatTime()}
                 />
+                </Card.Footer>
             </section>
+            </Card>
         );
     }
 }

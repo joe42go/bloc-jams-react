@@ -6,15 +6,14 @@ class PlayerBar extends Component {
             <section className="player-bar">
                 <section id="buttons">
                     <button id="previous" onClick={this.props.handlePrevClick} >
-                        <span className="ion-skip-backward"></span>
+                        <span className="ion-skip-backward"><ion-icon name="skip-backward"></ion-icon></span>
                     </button>
                     <button id="play-pause" onClick={this.props.handleSongClick} >
-                        <span className="ion-play"></span>
-                        <span className="ion-pause"></span>
+                        <ion-icon name="play"></ion-icon>
                         <span className={this.props.isPlaying ? 'ion-pause' : 'ion-play'}></span>
                     </button>
                     <button id="next" onClick={this.props.handleNextClick} >
-                        <span className="ion-skip-forward"></span>
+                        <span className="ion-skip-forward"><ion-icon name="skip-forward"></ion-icon></span>
                     </button>
                 </section>
                 <section id="time-control">

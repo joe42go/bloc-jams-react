@@ -4,16 +4,23 @@ import './App.css';
 import Landing from './components/Landing';
 import Library from './components/Library';
 import Album from './components/Album';
+import { Nav, Badge } from 'react-bootstrap';
 
 function App() {
   return (
     <div className="App">
       <header>
         <nav>
-            <Link to='/'>Landing</Link>
-            <Link to='/library'>Library</Link>
+            <Nav variant="tabs" defaultActiveKey="/">
+                <Nav.Item>
+                    <Nav.Link href="/"><Link to='/'>Landing</Link></Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link eventKey="library"><Link to='/library'>Library</Link></Nav.Link>
+                </Nav.Item>
+            </Nav>
         </nav>
-        <h1>Bloc Jams</h1>
+        <h1><Badge variant="success">Bloc Jams</Badge></h1>
       </header>
       <main>
         <Route exact path="/" component={Landing} />

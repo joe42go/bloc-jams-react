@@ -1,6 +1,8 @@
 import React from 'react';
+import { Jumbotron } from 'react-bootstrap';
 
 const Landing = () => (
+    <Jumbotron>
     <section className="landing">
         <h1 className="hero-title">Turn the music up!</h1>
         <section className="selling-points">
@@ -18,6 +20,7 @@ const Landing = () => (
             </div>
         </section>
     </section>
+    </Jumbotron>
 );
 
 export default Landing;
